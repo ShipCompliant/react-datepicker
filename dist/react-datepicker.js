@@ -703,18 +703,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  handleChange: function handleChange(event) {
 	    var newValue = event.target.value != "" ? event.target.value : null;
-	    if (newValue == this.state.value) return;
+	    if (newValue == this.state.value) return; // Prevent infinite loop in IE10
 
 	    var date = moment(newValue, this.props.dateFormat, true);
 
 	    if (date.isValid()) {
-	      console.log("setSelected");
 	      this.props.setSelected(new DateUtil(date));
 	    } else if (newValue == null) {
-	      console.log("clearSelected");
 	      this.props.clearSelected();
 	    } else {
-	      console.log("setting state");
 	      this.setState({
 	        value: newValue
 	      });
