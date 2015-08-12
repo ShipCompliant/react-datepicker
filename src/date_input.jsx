@@ -39,16 +39,19 @@ var DateInput = React.createClass( {
   },
 
   handleChange: function( event ) {
-    var date = moment( event.target.value, this.props.dateFormat, true );
+    var newValue = event.target.value != "" ? event.target.value : null;
+    if(newValue == this.state.value) return; // Prevent infinite loop in IE10
 
-    this.setState( {
-      value: event.target.value
-    } );
+    var date = moment( newValue, this.props.dateFormat, true );
 
-    if ( date.isValid() ) {
+    if ( date.isValid() ) {      
       this.props.setSelected( new DateUtil( date ) );
-    } else if ( event.target.value === "" ) {
+    } else if ( newValue == null ) {      
       this.props.clearSelected();
+    } else{      
+      this.setState( {
+        value: newValue
+      } );
     }
   },
 

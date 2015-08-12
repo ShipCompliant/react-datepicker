@@ -702,16 +702,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  handleChange: function handleChange(event) {
-	    var date = moment(event.target.value, this.props.dateFormat, true);
+	    var newValue = event.target.value != "" ? event.target.value : null;
+	    if (newValue == this.state.value) return;
 
-	    this.setState({
-	      value: event.target.value
-	    });
+	    var date = moment(newValue, this.props.dateFormat, true);
 
 	    if (date.isValid()) {
+	      console.log("setSelected");
 	      this.props.setSelected(new DateUtil(date));
-	    } else if (event.target.value === "") {
+	    } else if (newValue == null) {
+	      console.log("clearSelected");
 	      this.props.clearSelected();
+	    } else {
+	      console.log("setting state");
+	      this.setState({
+	        value: newValue
+	      });
 	    }
 	  },
 
