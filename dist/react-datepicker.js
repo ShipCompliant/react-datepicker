@@ -747,11 +747,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	      type: "text",
 	      name: this.props.name,
 	      value: this.state.value,
+	      readOnly: true,
 	      onClick: this.handleClick,
 	      onKeyDown: this.handleKeyDown,
 	      onFocus: this.props.onFocus,
 	      onBlur: this.props.onBlur,
-	      onChange: this.handleChange,
 	      className: this.props.className,
 	      disabled: this.props.disabled,
 	      placeholder: this.props.placeholderText });
